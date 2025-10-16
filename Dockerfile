@@ -16,7 +16,7 @@ RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
 # Copiamos el JAR generado
-RUN cp target/Mask-0.0.1-SNAPSHOT.jar app.jar
+RUN cp target/GuesMonsterApi-0.0.1-SNAPSHOT.jar
 
 # Puerto que expondrá Render
 EXPOSE 10000
