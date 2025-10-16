@@ -3,9 +3,9 @@ spring:
     name: GuesMonster
 
   datasource:
-    url: jdbc:postgresql://localhost:5435/maskapi
-    username: admin
-    password: secreta123
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -23,7 +23,7 @@ spring:
       continue-on-error: true
 
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 springdoc:
   api-docs:
