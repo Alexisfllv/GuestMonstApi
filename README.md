@@ -186,3 +186,33 @@ http://localhost:8080/swagger-ui.html
 | **US01**  | Obtener trivia aleatoria | `GET /api/trivia`    | ✅     |
 | **US02**  | Validar respuesta        | `POST /api/validate` | ✅     |
 | **US03**  | Cargar seed de monstruos | Script SQL           | ✅     |
+
+
+```mermaid
+graph TD
+    A[🎃 Frontend (React / HTML / CSS)] -->|Consume API REST| B[🧠 Backend (Spring Boot)]
+    B --> C[(🗄️ Base de Datos - MySQL)]
+
+    subgraph FRONTEND
+        A1[Mostrar silueta del monstruo]
+        A2[Botones de opciones (4)]
+        A3[Validación visual de respuesta]
+        A4[Siguiente pregunta / nueva trivia]
+        A1 --> A2 --> A3 --> A4
+    end
+
+    subgraph BACKEND
+        B1[Controller: /api/trivia]
+        B2[Controller: /api/validate]
+        B3[Service: Lógica de validación y aleatoriedad]
+        B4[Repository: Acceso a datos de monstruos]
+        B1 --> B3 --> B4
+        B2 --> B3
+    end
+
+    subgraph DATABASE
+        C1[Tabla: monstruo]
+        C2[Campos: id, nombre, imagen, opciones, correcta]
+        C --> C1 --> C2
+    end
+```
