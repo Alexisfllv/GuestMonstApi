@@ -225,6 +225,7 @@ graph TD
         C --> C1 --> C2
     end
 ```
+
 ---
 
 🔹 **Explicación rápida:**  
