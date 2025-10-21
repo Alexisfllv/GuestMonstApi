@@ -188,42 +188,41 @@ http://localhost:8080/swagger-ui.html
 | **US03**  | Cargar seed de monstruos | Script SQL           | ✅     |
 
 
-# 🎃 ¿Quién es ese Monstruo? – Arquitectura del Proyecto
 
-Juego web tipo *"¿Quién es ese Pokémon?"* adaptado a Halloween.  
-El backend provee los endpoints para obtener trivias aleatorias, validar respuestas y cargar datos iniciales de monstruos.
+```bash
+          ┌───────────────────────────────┐
+          │         FRONTEND              │
+          │ (React / HTML / CSS / JS)     │
+          │-------------------------------│
+          │ - Muestra silueta del monstruo│
+          │ - Presenta 4 opciones         │
+          │ - Valida respuesta visualmente│
+          │ - Botón siguiente pregunta     │
+          └───────────────┬───────────────┘
+                          │
+                          │  Consume API REST
+                          ▼
+          ┌───────────────────────────────┐
+          │          BACKEND              │
+          │       (Spring Boot)           │
+          │-------------------------------│
+          │ - Endpoint GET /api/trivia    │
+          │ - Endpoint POST /api/validate │
+          │ - Lógica de validación        │
+          │ - Acceso a datos (Repository) │
+          └───────────────┬───────────────┘
+                          │
+                          │  Accede a datos
+                          ▼
+          ┌───────────────────────────────┐
+          │        BASE DE DATOS          │
+          │           (MySQL)             │
+          │-------------------------------│
+          │ Tabla: monstruo               │
+          │ Campos: id, nombre, imagen,   │
+          │ opciones, correcta            │
+          └───────────────────────────────┘
 
----
-
-## 🧩 Diagrama de Capas – Arquitectura del Proyecto
-
-```mermaid
-graph TD
-    A[Frontend (React, HTML, CSS)] -->|Consume API REST| B[Backend (Spring Boot)]
-    B --> C[(Base de Datos MySQL)]
-
-    subgraph Frontend
-        A1[Mostrar silueta del monstruo]
-        A2[Botones de opciones (4)]
-        A3[Validación visual de respuesta]
-        A4[Siguiente pregunta]
-        A1 --> A2 --> A3 --> A4
-    end
-
-    subgraph Backend
-        B1[Controller: /api/trivia]
-        B2[Controller: /api/validate]
-        B3[Service: Lógica del juego]
-        B4[Repository: Datos de monstruos]
-        B1 --> B3 --> B4
-        B2 --> B3
-    end
-
-    subgraph Database
-        C1[Tabla: monstruo]
-        C2[Campos: id, nombre, imagen, opciones, correcta]
-        C --> C1 --> C2
-    end
 ```
 
 ---
