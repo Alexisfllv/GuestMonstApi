@@ -188,6 +188,15 @@ http://localhost:8080/swagger-ui.html
 | **US03**  | Cargar seed de monstruos | Script SQL           | ✅     |
 
 
+# 🎃 ¿Quién es ese Monstruo? – Arquitectura del Proyecto
+
+Juego web tipo *"¿Quién es ese Pokémon?"* adaptado a Halloween.  
+El backend provee los endpoints para obtener trivias aleatorias, validar respuestas y cargar datos iniciales de monstruos.
+
+---
+
+## 🧩 Diagrama de Capas – Arquitectura del Proyecto
+
 ```mermaid
 graph TD
     A[🎃 Frontend (React / HTML / CSS)] -->|Consume API REST| B[🧠 Backend (Spring Boot)]
@@ -216,3 +225,10 @@ graph TD
         C --> C1 --> C2
     end
 ```
+---
+
+🔹 **Explicación rápida:**  
+- El **frontend** muestra las trivias, recibe y envía respuestas.  
+- El **backend** maneja la lógica del juego y comunica con la base de datos.  
+- La **base de datos** almacena los monstruos y sus datos.  
+
