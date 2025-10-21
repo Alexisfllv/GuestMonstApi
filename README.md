@@ -227,7 +227,6 @@ graph TD
 ```
 
 ---
-
 🔹 **Explicación rápida:**  
 - El **frontend** muestra las trivias, recibe y envía respuestas.  
 - El **backend** maneja la lógica del juego y comunica con la base de datos.  
