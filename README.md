@@ -199,8 +199,8 @@ El backend provee los endpoints para obtener trivias aleatorias, validar respues
 
 ```mermaid
 graph TD
-    A[🎃 Frontend (React / HTML / CSS)] -->|Consume API REST| B[🧠 Backend (Spring Boot)]
-    B --> C[(🗄️ Base de Datos - MySQL)]
+    A[Frontend (React / HTML / CSS)] -->|Consume API REST| B[Backend (Spring Boot)]
+    B --> C[(Base de Datos - MySQL)]
 
     subgraph FRONTEND
         A1[Mostrar silueta del monstruo]
