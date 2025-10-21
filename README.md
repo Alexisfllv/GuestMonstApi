@@ -35,29 +35,29 @@ El sistema expone endpoints para:
 
 ---
 
-## 🧱 Arquitectura
+## 🧱 Arquitectura del Proyecto
 
-``` py
+```plaintext
 src/
 ├── main/
-│ ├── java/com/halloween/monstertrivia/
-│ │ ├── controller/ → Endpoints REST
-│ │ ├── service/ → Lógica de negocio
-│ │ ├── repository/ → Acceso a datos
-│ │ ├── domain/ → Entidades JPA
-│ │ ├── dto/ → Objetos de transferencia
-│ │ └── config/ → Configuración general
-│ └── resources/
-│ ├── application.yml → Configuración de entorno
-│ └── data/seed.sql → Datos iniciales (monstruos)
+│   ├── java/com/halloween/monstertrivia/
+│   │   ├── controller/     → Endpoints REST
+│   │   ├── service/        → Lógica de negocio
+│   │   ├── repository/     → Acceso a datos
+│   │   ├── domain/         → Entidades JPA
+│   │   ├── dto/            → Objetos de transferencia
+│   │   └── config/         → Configuración general
+│   └── resources/
+│       ├── application.yml → Configuración de entorno
+│       └── data/seed.sql   → Datos iniciales (monstruos)
 ```
 
+---
 
-# Diagrama entidade relacionamento (banco de dados)
+## 🧩 Diagrama Entidad–Relación
 
 ```mermaid
 erDiagram
-
     tb_product_photo {
         int product_id
         string file_name
@@ -83,16 +83,17 @@ erDiagram
         int request_id
         int product_id
     }
-
 ```
+
+---
 
 ## 🧛 Endpoints Principales
 
 ### 🎲 1. Obtener trivia aleatoria
+
 **GET** `/api/trivia`
 
-**Respuesta ejemplo:**
-
+**Ejemplo de respuesta:**
 ```json
 {
   "id": 3,
@@ -101,11 +102,13 @@ erDiagram
 }
 ```
 
+---
+
 ### ✅ 2. Validar respuesta
+
 **POST** `/api/validate`
 
-**Body Ejemplo**
-
+**Body Ejemplo:**
 ```json
 {
   "id": 3,
@@ -113,8 +116,7 @@ erDiagram
 }
 ```
 
-**Respuesta**
-
+**Respuesta:**
 ```json
 {
   "correcto": true,
@@ -122,22 +124,27 @@ erDiagram
 }
 ```
 
-### 🧬 3. Seed de datos
-## Script: /resources/data/seed.sql
-## Carga al menos 10 monstruos con sus respectivas siluetas, nombres y respuestas correctas.
+---
+
+### 🧬 3. Cargar datos iniciales (Seed)
+
+**Script:** `/resources/data/seed.sql`  
+Debe cargar al menos **10 monstruos** con sus respectivas siluetas, nombres y respuestas correctas.
 
 ---
 
-# Configuracion del Proyecto
+## ⚙️ Configuración del Proyecto
 
-## 1.Clonar repositorio
-``` bash
+### 1️⃣ Clonar repositorio
+
+```bash
 git clone https://github.com/tuusuario/monster-trivia-backend.git
 cd monster-trivia-backend
 ```
 
-## 2.Configurar DatabaBase PostgreSQL
-```yml
+### 2️⃣ Configurar Base de Datos PostgreSQL
+
+```yaml
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/monsterdb
@@ -149,23 +156,24 @@ spring:
     show-sql: true
 ```
 
-## 3.Ejecutar proyecto
+### 3️⃣ Ejecutar el proyecto
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-## 4.Acceder Swagger
+### 4️⃣ Acceder a Swagger
 
 ```bash
 http://localhost:8080/swagger-ui.html
 ```
---- HU 3
-``` bash
-| ID       | Descripción              | Endpoint             | Estado |
-| -------- | ------------------------ | -------------------- | ------ |
-| **US01** | Obtener trivia aleatoria | `GET /api/trivia`    | ✅      |
-| **US02** | Validar respuesta        | `POST /api/validate` | ✅      |
-| **US03** | Cargar seed de monstruos | Script SQL           | ✅      |
-```
 
+---
+
+## 📋 Historias de Usuario Implementadas
+
+| ID       | Descripción              | Endpoint             | Estado |
+|----------:|--------------------------|----------------------|--------|
+| **US01**  | Obtener trivia aleatoria | `GET /api/trivia`    | ✅     |
+| **US02**  | Validar respuesta        | `POST /api/validate` | ✅     |
+| **US03**  | Cargar seed de monstruos | Script SQL           | ✅     |
