@@ -146,14 +146,23 @@ cd monster-trivia-backend
 
 ```yaml
 spring:
+  application:
+    name: whos-that-monster
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/monsterdb
-    username: postgres
-    password: tu_clave
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    defer-datasource-initialization: true
 ```
 
 ### 3️⃣ Ejecutar el proyecto
