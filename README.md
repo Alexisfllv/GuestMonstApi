@@ -113,7 +113,7 @@ erDiagram
 
 **POST** `/api/validate`
 
-**Body Ejemplo:**
+**Body Ejemplo Correcto:**
 ```json
 {
   "id": 3,
@@ -128,11 +128,11 @@ erDiagram
     "imagenReal": "https://res.cloudinary.com/dfofbqqlg/image/upload/v1761154184/ddo0gl9xxk9ul6tzsclq.webp"
 }
 ```
-**Body Ejemplo:**
+**Body Ejemplo Error:**
 ```json
 {
   "id": 3,
-  "respuesta": "Diablo"
+  "respuesta": "Bruja"
 }
 ```
 ```json
