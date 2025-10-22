@@ -58,31 +58,30 @@ src/
 
 ```mermaid
 erDiagram
-    tb_product_photo {
-        int product_id
-        string file_name
-        string description
-        string content_type
-        int size
+    monsters {
+        int id PK
+        string name "varchar(100)" NOT NULL
+        string image_url "varchar(255)" NOT NULL
+        string silhouette_url "varchar(255)" NOT NULL
     }
 
-    tb_products {
-        int id
-        boolean active
-        string description
-        string name
-        float price
-        int restaurant_id
+    trivias {
+        int id PK
+        int monster_id FK "Id del monstruo para la silueta" NOT NULL
+        timestamp created_at "default: now()"
     }
 
-    tb_request_item {
-        int id
-        int amount
-        string note
-        float total_price
-        int request_id
-        int product_id
+    options {
+        int id PK
+        boolean is_correct "true si es la opcion correcta" NOT NULL
+        int monster_id FK NOT NULL
+        int trivia_id FK NOT NULL
     }
+
+    monsters ||--o{ trivias : "tiene"
+    trivias ||--o{ options : "contiene"
+    monsters ||--o{ options : "asociado a"
+
 ```
 
 ---
@@ -204,6 +203,7 @@ http://localhost:8080/swagger-ui.html
 | **US01**  | Obtener trivia aleatoria | `GET /api/trivia`    | ✅     |
 | **US02**  | Validar respuesta        | `POST /api/validate` | ✅     |
 | **US03**  | Cargar seed de monstruos | Script SQL           | ✅     |
+| **US08**  | Documentación de Backend | README.MD /docs      | ✅     |
 
 ## Diagrama de Capas
 ```bash
@@ -231,14 +231,22 @@ http://localhost:8080/swagger-ui.html
                           │
                           │  Accede a datos
                           ▼
-          ┌───────────────────────────────┐
-          │        BASE DE DATOS          │
-          │           (MySQL)             │
-          │-------------------------------│
-          │ Tabla: monstruo               │
-          │ Campos: id, nombre, imagen,   │
-          │ opciones, correcta            │
-          └───────────────────────────────┘
+           ┌───────────────────────────────┐
+           │        BASE DE DATOS          │
+           │          (PostgreSQL)         │
+           │-------------------------------│
+           │ Tablas:                       │
+           │   • monsters                  │
+           │   • trivias                   │
+           │   • options                   │
+           │-------------------------------│
+           │ monsters: id, name, image_url,│
+           │             silhouette_url    │
+           │ trivias:  id, monster_id,     │
+           │           created_at          │
+           │ options:  id, is_correct,     │
+           │          monster_id, trivia_id│
+           └───────────────────────────────┘
 
 ```
 
