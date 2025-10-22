@@ -96,9 +96,14 @@ erDiagram
 **Ejemplo de respuesta:**
 ```json
 {
-  "id": 3,
-  "imagen": "https://cdn.monsters/halloween/vampire-silhouette.png",
-  "opciones": ["Vampiro", "Momia", "Zombie", "Frankenstein"]
+    "id": 3,
+    "imagenSilueta": "https://res.cloudinary.com/dfofbqqlg/image/upload/v1761154182/csxosd6c3cooqhtjfyd2.webp",
+    "opciones": [
+        "Dracula",
+        "Bruja",
+        "Cthulhu",
+        "Diablo"
+    ]
 }
 ```
 
@@ -112,18 +117,31 @@ erDiagram
 ```json
 {
   "id": 3,
-  "respuesta": "Vampiro"
+  "respuesta": "Diablo"
 }
 ```
-
 **Respuesta:**
 ```json
 {
-  "correcto": true,
-  "monstruoRevelado": "https://cdn.monsters/halloween/vampire.png"
+    "acierto": true,
+    "mensaje": "¡Correcto! Era Diablo",
+    "imagenReal": "https://res.cloudinary.com/dfofbqqlg/image/upload/v1761154184/ddo0gl9xxk9ul6tzsclq.webp"
 }
 ```
-
+**Body Ejemplo:**
+```json
+{
+  "id": 3,
+  "respuesta": "Diablo"
+}
+```
+```json
+{
+    "acierto": false,
+    "mensaje": "Fallaste, era Diablo",
+    "imagenReal": "https://res.cloudinary.com/dfofbqqlg/image/upload/v1761154184/ddo0gl9xxk9ul6tzsclq.webp"
+}
+```
 ---
 
 ### 🧬 3. Cargar datos iniciales (Seed)
@@ -187,8 +205,7 @@ http://localhost:8080/swagger-ui.html
 | **US02**  | Validar respuesta        | `POST /api/validate` | ✅     |
 | **US03**  | Cargar seed de monstruos | Script SQL           | ✅     |
 
-
-
+## Diagrama de Capas
 ```bash
           ┌───────────────────────────────┐
           │         FRONTEND              │
@@ -197,7 +214,7 @@ http://localhost:8080/swagger-ui.html
           │ - Muestra silueta del monstruo│
           │ - Presenta 4 opciones         │
           │ - Valida respuesta visualmente│
-          │ - Botón siguiente pregunta     │
+          │ - Botón siguiente pregunta    │
           └───────────────┬───────────────┘
                           │
                           │  Consume API REST
