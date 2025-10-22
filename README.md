@@ -58,28 +58,28 @@ src/
 
 ```mermaid
 erDiagram
-    MONSTERS ||--o{ TRIVIAS : "tiene"
-    TRIVIAS  ||--o{ OPTIONS : "contiene"
-
     MONSTERS {
-        id
-        name
-        image_url
-        silhouette_url
+        int id
+        string name
+        string image_url
+        string silhouette_url
     }
 
     TRIVIAS {
-        id
-        monster_id
-        created_at
+        int id
+        int monster_id
+        timestamp created_at
     }
 
     OPTIONS {
-        id
-        is_correct
-        monster_id
-        trivia_id
+        int id
+        boolean is_correct
+        int monster_id
+        int trivia_id
     }
+
+    MONSTERS ||--o{ TRIVIAS : "tiene"
+    TRIVIAS  ||--o{ OPTIONS : "contiene"
 ```
 
 ## 💾 Diagrama de Base de Datos (Modelo Físico)
